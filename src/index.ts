@@ -71,7 +71,8 @@ class MTACard extends HTMLElement {
   getGridOptions() {
     return {
       min_rows: 2,
-      min_columns: 2,
+      min_columns: 6,
+      max_columns: 6,
     };
   }
 }

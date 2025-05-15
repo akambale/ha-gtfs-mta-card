@@ -6,8 +6,6 @@ This is a custom card for Home Assistant to show the NYC subway feed. It is powe
 
 ## 1. Installation
 
-### HACS (Recommended)
-
 ### Manual
 
 1. Copy the raw code in `/dist/index.js`
@@ -120,4 +118,4 @@ sensors:
 
 # Contributing
 
-Please feel free to make PRs! There are some UI bugs I'm not sure how to fix and would appreciate the help of the Home Assistant community.
+Please feel free to make PRs! I am not sure how to best control the card size with `getGridOptions` and would appreciate the help of the Home Assistant community.

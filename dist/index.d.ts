@@ -3,12 +3,10 @@ declare class MTACard extends HTMLElement {
     private config;
     set hass(hass: HomeAssistant);
     setConfig(config: Config): void;
-    getCardSize(): number;
     getGridOptions(): {
-        rows: number;
-        columns: number;
         min_rows: number;
-        max_rows: number;
+        min_columns: number;
+        max_columns: number;
     };
 }
 declare function getDueIn(state: SensorProps): number | undefined;
