@@ -2,24 +2,26 @@
 
 This is a custom card for Home Assistant to show the NYC subway feed. It is powered by data from with [ha-gtfs-rt](https://github.com/zacs/ha-gtfs-rt). There are several forks of that  integration; it's likely they will all work with this card but you may have to modify the YAML config slightly.
 
-# 1. Installation
+# Setup
 
-## HACS (Recommended)
+## 1. Installation
 
-## Manual
+### HACS (Recommended)
+
+### Manual
 
 1. Copy the raw code in `/dist/index.js`
 2. Create a file in the `/config/www/`. Call it `mta-card.js`.
 3. Paste the code in this new file and save it.
 
 
-# 2. Setting up GTFS realtime feeds
+## 2. Setting up GTFS realtime feeds
 Follow the instructions to install [ha-gtfs-rt](https://github.com/zacs/ha-gtfs-rt) on your Home Assistant. Do not configure any sensors yet, use these instructions below.
 
-# 3. Get Subway API Key
+## 3. Get Subway API Key
 Visit [MTA Developers](https://bt.mta.info/wiki/Developers/Index) to get an API key. Request a key from this link. The Bus Time API also works for subways.
 
-# 4. Set up senors
+## 4. Set up senors
 Open the `configuration.yaml` file in the `config/` directory.
 
 Under sensor, add the following template
@@ -32,7 +34,7 @@ sensor:
 ```
 
 
-# 4. Choose Subway Feeds
+## 4. Choose Subway Feeds
 For each train you want to see, copy the feed's [API endpoints](https://api.mta.info/#/subwayRealTimeFeeds) and add to the template. For example, if you want to track the `A`, `C`, and `L` trains, you'll need the following. Note that the `A` and `C` trains share the same `trip_update_url`, so we only need two objects in the sensor array to track our three trains.
 
 
@@ -46,7 +48,7 @@ sensor:
     x_api_key: <your-mta-api-key>
 ```
 
-# 5. Choose Subway Stations
+## 5. Choose Subway Stations
 Add a departures array to each sensor. The example below will add sensors for `A` and `C` trains going north and south.
 
 | Field  | Description                                                                                                                                                                                                                                                                       |
@@ -83,7 +85,7 @@ sensor:
 ```
 
 
-# 6. Find Stop IDs
+## 6. Find Stop IDs
 Use [Transit Feeds](https://transitfeeds.com/p/mta/79/latest/routes) to find all stop IDs for a given train. Note that stop IDs are shared between subway lines. For example, Northbound `A` and `C` trains at `14th St` have an ID of `A31N`.
 
 Sometimes this is not obvious. The [A24S](https://transitfeeds.com/p/mta/79/latest/stop/A24S) stop has `A`, `B`, `C`, and `D` trains, but the naming only references the `A` train.
@@ -95,7 +97,7 @@ The map only shows southbound trains but just flip the last character from `S` t
 There are stop IDs that show both directions of trains. For example, this would be `A28` without a fourth character. Do not use these stop IDs for sensors; they will not work correctly with this custom card.
 
 
-# 7. Configure the MTA Card
+## 7. Configure the MTA Card
 Add a card to your dashboard. In the `Search cards` bar, type "MTA Card." Use the following configuration:
 
 | Field          | Description                                                                                                                                                                                     |
@@ -116,3 +118,6 @@ sensors:
     minutes: 3
 ```
 
+# Contributing
+
+Please feel free to make PRs! There are some UI bugs I'm not sure how to fix and would appreciate the help of the Home Assistant community.

@@ -67,16 +67,11 @@ class MTACard extends HTMLElement {
   setConfig(config: Config) {
     this.config = config;
   }
-  getCardSize() {
-    return 6;
-  }
 
   getGridOptions() {
     return {
-      rows: 3,
-      columns: 6,
-      min_rows: 3,
-      max_rows: 3,
+      min_rows: 2,
+      min_columns: 2,
     };
   }
 }
