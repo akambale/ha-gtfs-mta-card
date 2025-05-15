@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "build": "tsc src/* --outDir dist",
+    "build": "npx tsc -p tsconfig.json",
     "prebuild": "yarn clean"
   },
   "devDependencies": {

@@ -11,3 +11,6 @@ declare class MTACard extends HTMLElement {
         max_rows: number;
     };
 }
+declare function getDueIn(state: SensorProps): number | undefined;
+declare function getNextDueIn(state: SensorProps): number | undefined;
+declare function getIconLink(lineName: string): string;

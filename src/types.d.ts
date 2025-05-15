@@ -1,7 +1,7 @@
 declare global {
   interface HomeAssistant {
     states: {
-      [entityId: string]: HassEntity;
+      [entityId: string]: SensorProps;
     };
     user?: {
       name: string;
@@ -23,6 +23,37 @@ declare global {
       time_format: string;
       date_format: string;
     };
+  }
+
+  interface LitElementConstructor {
+    new (): LitElement;
+    prototype: LitElement;
+  }
+
+  interface LitElement extends HTMLElement {
+    render(): unknown;
+    requestUpdate(): Promise<void>;
+    firstUpdated(changedProperties: Map<string, any>): void;
+    updated(changedProperties: Map<string, any>): void;
+    connectedCallback(): void;
+    disconnectedCallback(): void;
+    createRenderRoot(): Element | ShadowRoot;
+  }
+
+  interface PropertyDeclaration {
+    type: unknown;
+    attribute?: boolean | string;
+    reflect?: boolean;
+    hasChanged?(value: unknown, oldValue: unknown): boolean;
+  }
+
+  interface PropertyDeclarations {
+    [key: string]: PropertyDeclaration;
+  }
+
+  interface CSSResult {
+    cssText: string;
+    toString(): string;
   }
 
   interface HassEntity {
@@ -85,8 +116,47 @@ declare global {
   }
 
   interface Config {
-    entity: string;
-    [key: string]: any;
+    title: string;
+    sensors: Sensor[];
+  }
+
+  interface Sensor {
+    name: string;
+    minutes?: number;
+  }
+
+  interface Window {
+    customCards: Array<{
+      type: string;
+      name: string;
+      description: string;
+    }>;
+  }
+
+  interface SensorProps {
+    entity_id: 'sensor.1_north';
+    state: '7';
+    attributes: {
+      'Due in'?: number;
+      'Stop ID': string;
+      Route: string;
+      'Due at': string;
+      Occupancy: unknown;
+      'Next bus': string;
+      'Next bus due in'?: number;
+      'Next bus occupancy': unknown;
+      unit_of_measurement: 'min';
+      icon: 'mdi:bus';
+      friendly_name: string;
+    };
+    last_changed: string;
+    last_updated: string;
+  }
+
+  interface TrainRowProps {
+    timeUntil: number;
+    route: string;
+    threshold: number;
   }
 }
 
