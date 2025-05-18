@@ -2,13 +2,15 @@
 
 This is a custom card for Home Assistant to show the NYC subway feed. It is powered by data from with [ha-gtfs-rt](https://github.com/zacs/ha-gtfs-rt). There are several forks of that  integration; it's likely they will all work with this card but you may have to modify the YAML config slightly.
 
+![card preview](https://raw.githubusercontent.com/akambale/ha-gtfs-mta-card/refs/heads/main/preview.png)
+
 # Setup
 
 ## 1. Installation
 
 ### Manual
 
-1. Copy the raw code in `/dist/index.js`
+1. Copy the raw code in [/dist/index.js](https://raw.githubusercontent.com/akambale/ha-gtfs-mta-card/refs/heads/main/dist/index.js)
 2. Create a file in the `/config/www/`. Call it `mta-card.js`.
 3. Paste the code in this new file and save it.
 
@@ -47,13 +49,13 @@ sensor:
 ```
 
 ## 5. Choose Subway Stations
-Add a departures array to each sensor. The example below will add sensors for `A` and `C` trains going north and south.
+Add a departures array to each sensor. The example below will add sensors for `A` and `C` trains going north and south and the `L` train going south (or east towards Brooklyn).
 
-| Field  | Description                                                                                                                                                                                                                                                                       |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name   | The name of sensor in Home Assistant. Choose a value that is intuitive to you. Examples: "A North" or "A Northbound 14th St St"                                                                                                                                                   |
-| route  | This controls the icon of the train in the feed. Choose a value that matches the [list of SVG files](https://github.com/louh/mta-subway-bullets/tree/main/dist/svg). This is case sensitive. For example, if you set this value as `"A"`, the card will use `a.svg` for the icon. |
-| stopid | This is the stop ID you want to track arrival train times for. More instructions on how to find this below.                                                                                                                                                                       |
+| Field  | Description                                                                                                                                                                                                                                                                         |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name   | The name of sensor in Home Assistant. Choose a value that is intuitive to you. Examples: "A North" or "A Northbound 14th St"                                                                                                                                                        |
+| route  | This controls the icon of the train in the feed. Choose a value that matches the [list of SVG files](https://github.com/louh/mta-subway-bullets/tree/main/dist/svg). This is case insensitive. For example, if you set this value as `"A"`, the card will use `a.svg` for the icon. |
+| stopid | This is the stop ID you want to track arrival train times for. More instructions on how to find this below.                                                                                                                                                                         |
 
 ```yaml
 sensor:
@@ -113,7 +115,7 @@ sensors:
   - name: sensor.c_south
     minutes: 3
   - name: sensor.l_east
-    minutes: 3
+    minutes: 4 # giving myself an extra minute to walk down the stairs to the L platform 
 ```
 
 # Contributing
