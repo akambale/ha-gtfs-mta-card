@@ -123,6 +123,7 @@ declare global {
   interface Sensor {
     name: string;
     minutes?: number;
+    label?: string;
   }
 
   interface Window {
@@ -157,6 +158,7 @@ declare global {
     timeUntil: number;
     route: string;
     threshold: number;
+    label: string | null;
   }
 }
 

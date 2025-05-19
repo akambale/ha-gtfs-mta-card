@@ -21,7 +21,7 @@ Follow the instructions to install [ha-gtfs-rt](https://github.com/zacs/ha-gtfs-
 ## 3. Get Subway API Key
 Visit [MTA Developers](https://bt.mta.info/wiki/Developers/Index) to get an API key. Request a key from this link. The Bus Time API also works for subways.
 
-## 4. Set up senors
+## 4. Set Up senors
 Open the `configuration.yaml` file in the `config/` directory.
 
 Under sensor, add the following template
@@ -105,6 +105,7 @@ Add a card to your dashboard. In the `Search cards` bar, type "MTA Card." Use th
 | title          | The text at the top of the card                                                                                                                                                                 |
 | sensor name    | The sensor name will depend on the name specified in `configuration.yaml`                                                                                                                       |
 | sensor minutes | How many minutes it takes you to walk to the subway. This hides any subway times that will depart before you get to the station. Exclude this field if you don't want to filter out any trains. |
+| sensor label   | The text describing the train. This can be useful if you have a unified feed for both northbound and southbound trains.                                                                         |
 
 ```yaml
 type: custom:mta-card
@@ -118,6 +119,39 @@ sensors:
     minutes: 4 # giving myself an extra minute to walk down the stairs to the L platform 
 ```
 
-# Contributing
 
-Please feel free to make PRs! I am not sure how to best control the card size with `getGridOptions` and would appreciate the help of the Home Assistant community.
+**Example with a unified direction feed**
+```yaml
+type: custom:mta-card
+title: Southbound Trains and L
+sensors:
+  - name: sensor.a_south
+    minutes: 4
+    label: Far Rockaway-Mott Av
+  - name: sensor.a_north
+    minutes: 4
+    label: Inwood-207 St
+  - name: sensor.c_south
+    minutes: 3
+    label: Euclid Av
+  - name: sensor.c_north
+    minutes: 3
+    label: 168 St
+  - name: sensor.e_south
+    minutes: 3
+    label: World Trade Center
+  - name: sensor.e_north
+    minutes: 3
+    label: Jamaica Center
+```
+
+## 8. Configure the Card Layout
+These are the recommended layout options. The width of the cards (columns) will take up the minimum width if omitted. `full` will expand the card up to the max width, this option is best if you are adding a label for each sensor.
+
+```yaml
+grid_options:
+  rows: auto
+  # columns: full
+```
+
+

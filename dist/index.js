@@ -22,18 +22,23 @@ class MTACard extends HTMLElement {
             }
             const dueIn = getDueIn(trainLine);
             const nextDueIn = getNextDueIn(trainLine);
+            const threshold = lessThanMinutesThreshold ?? 0;
+            const route = trainLine.attributes.Route.toLowerCase();
+            const label = sensor.label || null;
             if (dueIn) {
                 trainRowData.push({
+                    threshold,
+                    route,
+                    label,
                     timeUntil: dueIn,
-                    threshold: lessThanMinutesThreshold ?? 0,
-                    route: trainLine.attributes.Route.toLowerCase(),
                 });
             }
             if (nextDueIn) {
                 trainRowData.push({
+                    threshold,
+                    route,
+                    label,
                     timeUntil: nextDueIn,
-                    threshold: lessThanMinutesThreshold ?? 0,
-                    route: trainLine.attributes.Route.toLowerCase(),
                 });
             }
         });
@@ -44,10 +49,13 @@ class MTACard extends HTMLElement {
             .filter(row => row.timeUntil >= row.threshold);
         filteredTrainRowData.sort((a, b) => a.timeUntil - b.timeUntil);
         const stringElArr = filteredTrainRowData.map(row => `
-      <li style="display: flex; flex-direction: row; justify-content: space-between; margin-bottom: 10px; align-items: center;">
-        <div style="background-image: url('${getIconLink(row.route)}'); height: 40px; width: 40px;"></div>
-        <div style="font-size: 30px;">${row.timeUntil} Min</div>
-      </li>
+        <li style="display: flex; flex-direction: row; justify-content: space-between; margin-bottom: 10px; align-items: center; font-size: 30px;">
+          <div style="background-image: url('${getIconLink(row.route)}'); height: 40px; width: 40px;"></div>
+          ${row.label === null
+            ? ''
+            : `<div style="flex: 1; margin-left: 5%;">${row.label}</div>`}
+          <div>${row.timeUntil} Min</div>
+        </li>
     `);
         this.content.innerHTML = stringElArr.join('');
     }
