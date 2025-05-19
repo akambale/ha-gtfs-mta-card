@@ -4,6 +4,9 @@ This is a custom card for Home Assistant to show the NYC subway feed. It is powe
 
 ![card preview](https://raw.githubusercontent.com/akambale/ha-gtfs-mta-card/refs/heads/main/preview.png)
 
+![second card preview](https://raw.githubusercontent.com/akambale/ha-gtfs-mta-card/refs/heads/main/preview-2.png)
+
+
 # Setup
 
 ## 1. Installation
