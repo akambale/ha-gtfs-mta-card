@@ -1,6 +1,6 @@
 {
   "name": "GTFS MTA Card",
   "render_readme": true,
-  "filename": "index.js",
+  "filename": "ha-gtfs-mta-card.js",
   "content_in_root": false
 }

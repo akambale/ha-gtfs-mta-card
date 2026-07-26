@@ -12,11 +12,21 @@ This is a custom card for Home Assistant to show the NYC subway feed. It is powe
 
 ## 1. Installation
 
+### HACS (custom repository)
+
+This card is not in the HACS default store yet, so add it as a custom repository:
+
+1. In Home Assistant, open **HACS**.
+2. Click the three-dot menu in the top right and choose **Custom repositories**.
+3. Add `https://github.com/akambale/ha-gtfs-mta-card` with type **Dashboard**, then click **Add**.
+4. Search HACS for "GTFS MTA Card", install it, and reload your browser.
+
 ### Manual
 
-1. Copy the raw code in [/dist/index.js](https://raw.githubusercontent.com/akambale/ha-gtfs-mta-card/refs/heads/main/dist/index.js)
+1. Copy the raw code in [/dist/ha-gtfs-mta-card.js](https://raw.githubusercontent.com/akambale/ha-gtfs-mta-card/refs/heads/main/dist/ha-gtfs-mta-card.js)
 2. Create a file in the `/config/www/`. Call it `mta-card.js`.
 3. Paste the code in this new file and save it.
+4. Add it as a dashboard resource: **Settings → Dashboards → three-dot menu → Resources → Add** `/local/mta-card.js` as a JavaScript module.
 
 
 ## 2. Setting up GTFS realtime feeds
