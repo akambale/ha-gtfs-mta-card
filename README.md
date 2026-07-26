@@ -1,4 +1,5 @@
 # Home Assistant Realtime GTFS NYC MTA Card
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration)
 
 This is a custom card for Home Assistant to show the NYC subway feed. It is powered by data from with [ha-gtfs-rt](https://github.com/zacs/ha-gtfs-rt). There are several forks of that  integration; it's likely they will all work with this card but you may have to modify the YAML config slightly.
 

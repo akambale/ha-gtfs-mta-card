@@ -1,0 +1,6 @@
+{
+  "name": "GTFS MTA Card",
+  "render_readme": true,
+  "filename": "index.js",
+  "content_in_root": false
+}
